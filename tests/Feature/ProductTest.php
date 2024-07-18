@@ -131,7 +131,19 @@ class ProductTest extends TestCase
             'price' => $updateProduct['price']
         ]);
     }
-    
+
+    public function test_update_validation_works_successfully()
+    {
+        $product = Product::factory()->create();
+        
+        $response = $this->actingAs($this->admin)->post('/products/' . $product->id, [
+            'name' => '',
+            'price' => ''
+        ]);
+        $response->assertStatus(302);
+        $response->assertInvalid(['name', 'price']);
+    }
+
     private function createUser(bool $isAdmin=false)
     {
         return User::factory()->create([
