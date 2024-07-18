@@ -857,10 +857,11 @@
                     
                             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     
-                                <form action="">
-                                    <input style="border: 3px solid gray; margin:10px;" type="text" name="" id="" placeholder="Product Name">
+                                <form action="{{route('products.store')}}" method="POST">
+                                    @csrf
+                                    <input style="border: 3px solid gray; margin:10px;" type="text" name="name" id="" placeholder="Product Name">
                                     <br>
-                                    <input style="border: 3px solid gray; margin:10px;" type="text" name="" id="" placeholder="Price">
+                                    <input style="border: 3px solid gray; margin:10px;" type="text" name="price" id="" placeholder="Price">
                                     <br>
                                     <button type="submit" style="background-color:black; margin:10px;color:white; padding: 7px; border-radius:5px;">add new product</button>
                                 </form>
