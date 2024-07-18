@@ -905,10 +905,13 @@
                                             Eur{{$product->price_euro}}
                                         </td>
                                         @if (auth()->user()->is_admin)
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            <a href="{{route('products.edit', $product) }}">Edit</a>
-                                            <a href="">Delete</a>
-                                        </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                <a href="{{ route('products.edit', $product) }}">Edit</a>
+                                                <form action="{{ route('products.delete', $product) }}" method="POST">
+                                                    @csrf
+                                                    <button style="background-color:red; color:black; padding:4px;border-radius:5px;">Delete</button>
+                                                </form>
+                                            </td>
                                         @endif
                                     </tr>
                                 @endforeach
