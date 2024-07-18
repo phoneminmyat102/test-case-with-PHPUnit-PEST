@@ -24,13 +24,24 @@ class ProductController extends Controller
             'name' => 'required|string|max:255',
             'price' => 'required|numeric|min:0'
         ]);
-
         Product::create($validatedData);
+
         return redirect()->route('products.index');
     }
 
     public function edit(Product $product)
     {
         return view('product.edit', compact('product'));
+    }
+
+    public function update(Request $request, Product $product)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric|min:0'
+        ]);
+        $product->update($validatedData);
+
+        return redirect()->route('products.index');
     }
 }

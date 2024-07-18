@@ -114,6 +114,24 @@ class ProductTest extends TestCase
         $response->assertViewHas('product', $product);
     }
 
+    public function test_admin_update_product_successfully()
+    {
+        $product = Product::factory()->create();
+        $updateProduct = [
+            'name' => "Test Product",
+            'price' => 324
+        ];
+
+        $response = $this->actingAs($this->admin)->post('/products/' . $product->id , $updateProduct);
+        $response->assertStatus(302);
+        $response->assertRedirect('/products/all');
+        $this->assertDatabaseHas('products', [
+            'id' => $product->id,
+            'name' => $updateProduct['name'],
+            'price' => $updateProduct['price']
+        ]);
+    }
+    
     private function createUser(bool $isAdmin=false)
     {
         return User::factory()->create([
