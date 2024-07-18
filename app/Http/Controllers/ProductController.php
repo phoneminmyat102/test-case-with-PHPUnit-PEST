@@ -28,4 +28,9 @@ class ProductController extends Controller
         Product::create($validatedData);
         return redirect()->route('products.index');
     }
+
+    public function edit(Product $product)
+    {
+        return view('product.edit', compact('product'));
+    }
 }

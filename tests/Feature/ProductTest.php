@@ -103,6 +103,17 @@ class ProductTest extends TestCase
         $this->assertEquals($product['price'], $latestProduct['price']);
     }
 
+    public function test_product_edit_page_contains_correct_values()
+    {
+        $product = Product::factory()->create();
+
+        $response = $this->actingAs($this->admin)->get('/products/' . $product->id . '/edit');
+        $response->assertStatus(200);
+        $response->assertSee('value="' . $product->name . '"', false);
+        $response->assertSee('value="' . $product->price . '"', false);
+        $response->assertViewHas('product', $product);
+    }
+
     private function createUser(bool $isAdmin=false)
     {
         return User::factory()->create([

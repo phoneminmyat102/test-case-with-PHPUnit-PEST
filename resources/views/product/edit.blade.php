@@ -856,12 +856,12 @@
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8">
                     
                             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                                <h3 style="margin-left: 6px; padding: 10px;">Create Form</h3>
-                                <form action="{{route('products.store')}}" method="POST">
+                                <h3 style="margin-left: 6px; padding: 10px;">Edit Form</h3>
+                                <form action="{{route('products.update', $product)}}" method="POST">
                                     @csrf
-                                    <input style="border: 3px solid gray; margin:10px;" type="text" name="name" id="" placeholder="Product Name">
+                                    <input style="border: 3px solid gray; margin:10px;" type="text" name="name" id="" value="{{$product->name}}" placeholder="Product Name">
                                     <br>
-                                    <input style="border: 3px solid gray; margin:10px;" type="text" name="price" id="" placeholder="Price">
+                                    <input style="border: 3px solid gray; margin:10px;" type="text" name="price" id="" value="{{$product->price}}" placeholder="Price">
                                     <br>
                                     <button type="submit" style="background-color:black; margin:10px;color:white; padding: 7px; border-radius:5px;">add new product</button>
                                 </form>
